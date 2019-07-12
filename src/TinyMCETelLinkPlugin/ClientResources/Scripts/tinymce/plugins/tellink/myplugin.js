@@ -52,8 +52,8 @@ tinymce.PluginManager.add('tellink', function (editor, url) {
     return {
         getMetadata: function () {
             return {
-                name: "Example plugin",
-                url: "http://exampleplugindocsurl.com"
+                name: "Tellink plugin",
+                url: "http://andersjacobsen.net"
             };
         }
     };
