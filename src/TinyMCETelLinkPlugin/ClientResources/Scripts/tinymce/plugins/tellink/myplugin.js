@@ -1,4 +1,8 @@
-﻿
+﻿! function () {
+    "use strict";
+
+   
+
 
 tinymce.PluginManager.add('tellink', function (editor, url) {
     
@@ -21,31 +25,36 @@ tinymce.PluginManager.add('tellink', function (editor, url) {
             title: 'Tel Link',
             body: [
                 { type: 'textbox', name: 'href', label: 'Phone Number', value: href },
-                { type: 'textbox', name: 'text', label: 'Link text', value: text},
+                { type: 'textbox', name: 'text', label: 'Link text', value: text },
             ],
             onSubmit: function(api) {
                 var data = api.data;
+
+                if (data.href === '') {
+                    return;
+                }
+
+                if (data.text === '') {
+                    editor.insertContent('<a class="tellink" href="tel:' + data.href + '">' + data.href + '</a>');
+                    return;
+                }
+
                 if (isUpdate) {
                     editor.insertContent('<a class="tellink" href="tel:' + data.href + '">' + data.text + '</a>');
 
                 } else {
                     editor.insertContent('<a class="tellink" href="tel:' + data.href + '">' + data.text + '</a>');
                 }
-
             }
         });
     });
+
     
     // Add a button that opens a window
     editor.addButton('tellink', {
         title: 'Tel Link',
         image: url + '/images/tel.png',
-        cmd: 'tinymcecustombutton',
-        onAction: function () {
-            // Open window
-            window.alert('Before open');
-            openDialog();
-        }
+        cmd: 'tinymcecustombutton'
     });
     
 
@@ -58,3 +67,5 @@ tinymce.PluginManager.add('tellink', function (editor, url) {
         }
     };
 });
+}();
+

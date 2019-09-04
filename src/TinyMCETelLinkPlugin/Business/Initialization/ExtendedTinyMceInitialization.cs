@@ -26,7 +26,6 @@ namespace TinyMCETelLinkPlugin.Business.Initialization
 			{
 				// Add content CSS to the default settings.
 				config.Default()
-					.ContentCss("/static/css/editor.css")
 					.AddPlugin("code")
 					.AddExternalPlugin("tellink", "/ClientResources/Scripts/tinymce/plugins/tellink/myplugin.js")
 					.Toolbar(DefaultValues.Toolbar + " | code tellink");
