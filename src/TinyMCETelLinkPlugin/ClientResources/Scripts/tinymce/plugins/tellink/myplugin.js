@@ -1,14 +1,10 @@
 ﻿! function () {
     "use strict";
 
-   
-
-
 tinymce.PluginManager.add('tellink', function (editor, url) {
     
     editor.addCommand('tinymcecustombutton', function () {
-        var isUpdate = false;
-        //default values 
+   
         var href = "";
         var text = "";
         
@@ -17,7 +13,6 @@ tinymce.PluginManager.add('tellink', function (editor, url) {
             && editor.selection.getNode().className.includes("tellink")) {
             href = editor.selection.getNode().getAttribute("href").replace("tel:","");
             text = editor.selection.getNode().innerText;
-            isUpdate = true;
         }
 
         // Open window
@@ -39,12 +34,8 @@ tinymce.PluginManager.add('tellink', function (editor, url) {
                     return;
                 }
 
-                if (isUpdate) {
-                    editor.insertContent('<a class="tellink" href="tel:' + data.href + '">' + data.text + '</a>');
-
-                } else {
-                    editor.insertContent('<a class="tellink" href="tel:' + data.href + '">' + data.text + '</a>');
-                }
+                editor.insertContent('<a class="tellink" href="tel:' + data.href + '">' + data.text + '</a>');
+                
             }
         });
     });
